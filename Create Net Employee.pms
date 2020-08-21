@@ -1,0 +1,25 @@
+const postTestEmployee = {
+  url:  'http://localhost:54065/api/employee',
+  method: "post",
+  body: {
+     mode: 'raw',
+     raw: JSON.stringify(
+	 {
+            'Name': 'Jane Doe',
+            'Address': '123 Main Street',
+            'Role': 'Senior Developer',
+            'Department': 'IT',
+            'SkillSets': 'C#, Javascript, HTML',
+            'DateOfBirth': '1980-03-22',
+            'DateOfJoining': '2016-09-15',
+            'IsActive': true
+     })
+  },
+  header: {
+      'Content-Type': 'application/json'
+  }
+};
+
+pm.sendRequest(postTestEmployee, function (err, response) {
+  console.log(response.json())
+});
