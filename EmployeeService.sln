@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{3054F400-9031-4B5E-8816-D571FEC4AE96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService", "EmployeeService\EmployeeService.csproj", "{3054F400-9031-4B5E-8816-D571FEC4AE96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeService.Test", "EmployeeService.Test\EmployeeService.Test.csproj", "{3455229A-E8C5-4634-8D7F-52A5B15390C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeService.Test", "EmployeeService.Test\EmployeeService.Test.csproj", "{3455229A-E8C5-4634-8D7F-52A5B15390C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Postman Scripts", "Postman Scripts", "{84F7ECE4-E6D3-469D-AA77-FCFF6416588B}"
 	ProjectSection(SolutionItems) = preProject
