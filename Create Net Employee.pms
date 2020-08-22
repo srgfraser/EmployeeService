@@ -1,5 +1,5 @@
 const postTestEmployee = {
-  url:  'http://localhost:54065/api/employee',
+  url:  'https://employeeservice20200821173815.azurewebsites.net/api/employee',
   method: "post",
   body: {
      mode: 'raw',
