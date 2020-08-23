@@ -24,6 +24,11 @@ namespace EmployeeService
 
             services.AddDbContext<EmployeesContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("EmployeesContext")));
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "UI/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +46,12 @@ namespace EmployeeService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "UI";
             });
         }
     }
