@@ -54,6 +54,8 @@ namespace EmployeeService.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -64,23 +66,21 @@ namespace EmployeeService.Controllers
 
                 throw;
             }
-
-            return NoContent();
         }
 
         // POST: api/Employee
         [HttpPost]
-        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
+        public async Task<IActionResult> PostEmployee(Employee employee)
         {
             await _context.Employees.AddAsync(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEmployee", new { id = employee.Id }, employee);
+            return Ok();
         }
 
         // DELETE: api/Employee/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
             var employee = await _context.Employees.FindAsync(id);
             if (employee == null)
@@ -91,7 +91,7 @@ namespace EmployeeService.Controllers
             _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
 
-            return employee;
+            return Ok();
         }
 
         private bool EmployeeExists(int id)
