@@ -11,7 +11,7 @@ export class DataStorageService {
   urlRootProd = 'https://employeeservice20200821173815.azurewebsites.net/api/employee/';
   urlRootDev = 'http://localhost:54065/api/employee/';
 
-  urlRoot = this.urlRootDev;
+  urlRoot = this.urlRootProd;
 
   httpOptions = {
     headers: new  HttpHeaders ({
