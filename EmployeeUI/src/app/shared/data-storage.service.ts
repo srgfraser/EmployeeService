@@ -8,10 +8,7 @@ export class DataStorageService {
 
   constructor(private http: HttpClient) { }
 
-  urlRootProd = 'https://employeeservice20200821173815.azurewebsites.net/api/employee/';
-  urlRootDev = 'http://localhost:54065/api/employee/';
-
-  urlRoot = this.urlRootProd;
+  urlRoot = 'https://employeeservice20200821173815.azurewebsites.net/api/employee/';
 
   httpOptions = {
     headers: new  HttpHeaders ({
@@ -28,18 +25,15 @@ export class DataStorageService {
     return this.http.get<Employee>(this.urlRoot + id);
   }
 
-  postData(employee: Employee): void {
-    this.http.post<Employee>(this.urlRoot, employee)
-             .subscribe(response => console.log(response));
+  postData(employee: Employee): Observable<any> {
+    return this.http.post<Employee>(this.urlRoot, employee);
   }
 
-  putData(id: number, employee: Employee): void {
-    this.http.put<Employee>(this.urlRoot + id, employee)
-             .subscribe(response => console.log(response));
+  putData(id: number, employee: Employee): Observable<any> {
+    return this.http.put<Employee>(this.urlRoot + id, employee);
   }
 
-  deleteData(id: number): void {
-    this.http.delete<Employee>(this.urlRoot + id)
-             .subscribe(response => console.log(response));
+  deleteData(id: number): Observable<any> {
+    return this.http.delete<Employee>(this.urlRoot + id);
   }
 }

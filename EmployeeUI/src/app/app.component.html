@@ -1,5 +1,5 @@
 <div class="container">
-  <h3>Employee Table CRUD Operation</h3>
+  <h3>Employee CRUD Operations</h3>
 
   <form [formGroup]="EmpForm" (ngSubmit)="OnSubmit()">
     <div class="row">
@@ -143,8 +143,8 @@
         <td>{{ d.role }}</td>
         <td>{{ d.department }}</td>
         <td>{{ d.skillSets }}</td>
-        <td>{{ d.dateOfBirth }}</td>
-        <td>{{ d.dateOfJoining }}</td>
+        <td>{{ d.dateOfBirth | date : 'MM/dd/yyy' }}</td>
+        <td>{{ d.dateOfJoining | date : 'MM/dd/yyy' }}</td>
         <td>{{ d.isActive }}</td>
 
         <td><a (click)="EditData(d)" class="btn btn-warning">Edit</a></td>

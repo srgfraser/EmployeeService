@@ -35,8 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   getdata(): void {
-    this.dataStorageService.getData().subscribe((data: any) => {
-      console.log(data);
+    this.dataStorageService.getData().subscribe((data: Employee[]) => {
       this.data = data;
     },
     error => {
@@ -46,7 +45,12 @@ export class AppComponent implements OnInit {
   }
 
   deleteData(id: number): void {
-    this.dataStorageService.deleteData(id);
+    this.dataStorageService.deleteData(id).subscribe(response => {
+      this.getdata(); // Should cache and use memory version instead of service call.
+    }
+      , error => {
+          console.log(error);
+      });
   }
 
   OnSubmit(): void {
@@ -65,8 +69,13 @@ export class AppComponent implements OnInit {
     if (this.EmpForm.invalid) {
       return;
     }
-    this.dataStorageService.postData(this.EmpForm.value);
-    this.resetFrom();
+    this.dataStorageService.postData(this.EmpForm.value).subscribe(response => {
+      this.getdata(); // Should cache and use memory version instead of service call.
+      this.resetFrom();
+    }
+    , error => {
+        console.log(error);
+    });
   }
 
   Update(): void {
@@ -75,8 +84,13 @@ export class AppComponent implements OnInit {
     if (this.EmpForm.invalid) {
      return;
     }
-    this.dataStorageService.putData(this.EmpForm.value.id, this.EmpForm.value);
-    this.resetFrom();
+    this.dataStorageService.putData(this.EmpForm.value.id, this.EmpForm.value).subscribe(response => {
+      this.getdata(); // Should cache and use memory version instead of service call.
+      this.resetFrom();
+    }
+    , error => {
+        console.log(error);
+    });
   }
 
   EditData(Data: Employee): void {
@@ -86,8 +100,8 @@ export class AppComponent implements OnInit {
     this.EmpForm.controls.role.setValue(Data.role);
     this.EmpForm.controls.department.setValue(Data.department);
     this.EmpForm.controls.skillSets.setValue(Data.skillSets);
-    this.EmpForm.controls.dateOfBirth.setValue(Data.dateOfBirth);
-    this.EmpForm.controls.dateOfJoining.setValue(Data.dateOfJoining);
+    this.EmpForm.controls.dateOfBirth.setValue(Data.dateOfBirth === null ? null : Data.dateOfBirth.toString().substring(0, 10));
+    this.EmpForm.controls.dateOfJoining.setValue(Data.dateOfJoining.toString().substring(0, 10));
     this.EmpForm.controls.isActive.setValue(Data.isActive);
 
     this.EventValue = 'Update';
@@ -95,7 +109,6 @@ export class AppComponent implements OnInit {
 
   resetFrom(): void
   {
-    this.getdata();
     this.EmpForm.reset();
     this.EventValue = 'Save';
     this.submitted = false;
